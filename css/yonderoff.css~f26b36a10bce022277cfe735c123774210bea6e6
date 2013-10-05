@@ -1,0 +1,33 @@
+/* YonderOff custom CSS. This is copied from Bootstrap Jumbotron template. */
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+h1, h2, h3, h4, h5, nav {
+	font-family: 'Noto Sans 700', sans-serif;
+}
+.jumbotron {
+	background-color: rgb(235,248,172);
+}
+.jumbotron h1 {
+	background-image: url(/images/yonderoff-logo-3.png) repeat:none;
+	width: 40%;
+	height: auto;
+}
+.jumbotron span.brandname {
+	display: none;
+}
+.btn-primary {
+	background-color: rgb(200,240,0);
+	border-color: rgb(200,240,0);
+	color: rgb(0,0,0);
+}
+.btn-primary:hover {
+	background-color: rgb(240,172,0);
+	border-color: rgb(240,172,0);
+	color: rgb(0,0,0);
+}
+h2 {
+	color: rgb(102,102,51);
+}
