@@ -10,21 +10,13 @@ h1, h2, h3, h4, h5, nav {
 .jumbotron {
 	background-color: rgb(235,248,172);
 }
-/* .jumbotron h1 {
-	display: inline-block;
+.jumbotron h1 {
 	background-image: url(/images/yonderoff-logo-3.png) repeat:none;
 	width: 40%;
 	height: auto;
-} */
-
-img#yonderoff {
-	width: 90%
-	height:auto;
-	min-width: 280px;
-
 }
-.jumbotron span.yonderbrandname {
-	left: -5000px;
+.jumbotron span.brandname {
+	display: none;
 }
 .btn-primary {
 	background-color: rgb(200,240,0);
