@@ -1,7 +1,7 @@
-var QuickSearch = QuickSearch || {};
-var QuickSearch = {
+var younderoff = younderoff || {};
+var younderoff = {
 
-  trailheadsurl: "http://yonderoff.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM trailheads LIMIT 10000",
+  trailheadsurl: "http://yonderoff.cartodb.com/api/v2/sql",
   
   trailheadresults: function (data){
     var trailhead = [];
@@ -13,13 +13,13 @@ var QuickSearch = {
   }
 },
 
-  searchtrailhead: function (){
-        var urlStr = QuickSearch.trailheadsurl;
+  searchtrailhead: function (val){
+        var urlStr = younderoff.trailheadsurl+"?q=SELECT * FROM trailheads WHERE ='"+val+"'";
 
         $.ajax({
           url: urlStr,
           dataType: "jsonp",
-          success: function (data){ return urlStr;},
+          success: function (data){ },
           error:function(x,t,m){console.log('fail');}
 
         });
