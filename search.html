@@ -111,7 +111,7 @@
           source: function (request, response) {
             
              val = $('#txtSearch').val();
-             var urlStr = younderoff.trailheadsurl+"?q=SELECT * FROM trailheads where upper%28trailname%29  like upper%28'%25"+val+"%25'%29";
+             var urlStr = younderoff.trailheadsurl+"?q=SELECT * FROM trailheads where upper%28trailname%29  like upper%28'%25"+val+"%25'%29  or  upper%28amenites%29 like upper%28'%25"+val+"%25'%29 ";
              
             $.ajax({
               url: urlStr,
@@ -122,6 +122,7 @@
                   $.each(data.rows, function(key, val) {
                     //$.each(val, function(nm,vl) {
                       $('#results').append('<div>'+JSON.stringify(val)+'</div>');
+                       $('#results').append('<div>'+val.length+'</div>')
                     //});
                   });
                   //response($.map(data.rows.slice(0, 14), function (item) {//only display first 10
