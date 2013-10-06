@@ -111,7 +111,7 @@
           source: function (request, response) {
             
              val = $('#txtSearch').val();
-             var urlStr = younderoff.trailheadsurl+"?q=SELECT * FROM trailheads where trailname like '%25"+val+"%25'";
+             var urlStr = younderoff.trailheadsurl+"?q=SELECT * FROM trailheads where upper%28trailname%29  like upper%28'%25"+val+"%25'%29";
              
             $.ajax({
               url: urlStr,
