@@ -49,25 +49,32 @@
     <div class="jumbotron">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
           <h2>Find Hikes</h2>
           <form>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="form-group">
                 <input type="text" placeholder="Search" class="form-control" id="txtSearch">
               </div>
             </div> 
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
               <div class="form-group">
               <button type="submit" class="btn btn-success">Search</button>
+              </div> 
+
+            </div> 4"> 
+              <div class="form-group"> 
+              
               </div>
-            </div> 
-            <div class="col-sm-4"> 
-              <div class="form-group">             
-              </div>
-            </div>  
+            </div>  -->
           </form>
         </div>
+         <div class="col-lg-6">
+          <h2>YonderList</h2>
+            <div class="col-sm-6">
+              <div id="yonderlist"></div>
+            </div>
+         </div>
       </div>
     </div> 
     </div> 
@@ -78,9 +85,13 @@
             <!-- results here -->
             <div class="table-responsive"   >
               
-               <table class="table table-condensed">
+               <table class="table table-condensed table-striped">
                  <thead>
                   <tr>
+                    <td>
+                      Yonder List
+                    </td>
+
                     <td>
                       Trail NO
                     </td>
@@ -94,7 +105,7 @@
                     </td>
 
                     <td>
-                      Amenites
+                      Amenitites
                     </td>
                       <td>
                       Distance
@@ -152,19 +163,35 @@
 
                 
                 if (data.rows) {
-                   cnt=0;
+                   
                   $.each(data.rows, function(key,val ) {
                       
                       d=val
-                      $('#results').append('<tr>');
+                      
+                     $('#results').append('<tr>');
+                     cnt=0;
+                     $.each(d, function(i, e){
+                      if(cnt==1){
+                        $('#results').append('<td onclick="'+
+                            '$(\'#yonderlist\').append(\''+e+'<br/>\')'  +
+                          '" ><center><img src="imgs/yanderlist.png" style="width:25px;height:25px;"/></center></td>') 
+                      }
+                       cnt+=1;
+                     });
                      
+                     //$('#results').append('<td onclick="'+
+                     // +' alert('+d[0]+')'+
+                     // +'" >YonderList</td>');
                       $.each(d, function(fldn, fldv){
+                        cnt=0;
+                        if(cnt==0){}
+                          $('#results').append('<td>'+fldv+'</td>');
                         
-                        $('#results').append('<td>'+fldv+'</td>');
+                        cnt+=1;
                       });   
                      
-                     $('#results').append('<tr/>');  
-                     cnt+=1;
+                     $('#results').append('</tr>');  
+                     
                   });
                   
                 }
