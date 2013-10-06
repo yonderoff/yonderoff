@@ -14,6 +14,13 @@
     <!-- Custom styles for this template -->
     <link href="css/yonderoff.css" rel="stylesheet">
     <script type="text/javascript" src="js/search.js" ></script>
+<style>
+#yonderlist 
+{
+height:150px;
+overflow:scroll;
+}
+</style>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -72,11 +79,32 @@
          <div class="col-lg-6">
           <h2>YonderList</h2>
             <div class="col-sm-6">
-              <div id="yonderlist"></div>
+              <div id="yonderlist" class="yonderlist" ></div>
             </div>
          </div>
       </div>
     </div> 
+    </div>
+    <div class="container">
+      <div class="row">
+        <div  class="col-sm-2 ">
+          <img src="images/Bicycle-25p-25p.png" onclick="fastsearch('bike')" />
+        </div>
+        <div class="col-sm-2">
+          <img src="images/Hiker Symbol-25p-25p.png" onclick="fastsearch('hike')" />
+        </div>
+        <div class="col-sm-2">
+          <img src="images/rivers-25p-25p.png" onclick="fastsearch('stream')" />
+        </div>
+        <div class="col-sm-2">
+          <img src="images/Waterfalls-25p-25p.png" onclick="fastsearch('waterfalls')" />
+        </div>
+        <div class="col-sm-2">
+          <img src="images/Views-25p-25p.png" onclick="fastsearch('view')" />
+        </div>
+
+
+      </div>
     </div> 
     <div class="container">
       <div class="row">
@@ -201,7 +229,57 @@
             });
             }
           });
-        
+        function fastsearch(val){
+
+                    
+             thenum = val.replace( /^\D+/g, '')
+             if(thenum==''){thenum=0};
+             var urlStr = younderoff.trailheadsurl+"?q=SELECT trailno%2Ctrailname%2cblaze_color%2camenites%2cdistance%2celevation  FROM trailheads where  upper%28amenites%29 like upper%28'%25"+val+"%25'%29 ";
+$.ajax({
+              url: urlStr,
+              dataType: "jsonp",
+              success: function (data) {
+                $('#results').html('');
+
+                
+                if (data.rows) {
+                   
+                  $.each(data.rows, function(key,val ) {
+                      
+                      d=val
+                      
+                     $('#results').append('<tr>');
+                     cnt=0;
+                     $.each(d, function(i, e){
+                      if(cnt==1){
+                        $('#results').append('<td onclick="'+
+                            '$(\'#yonderlist\').append(\''+e+'<br/>\')'  +
+                          '" ><center><img src="imgs/yanderlist.png" style="width:25px;height:25px;"/></center></td>') 
+                      }
+                       cnt+=1;
+                     });
+                     
+                     //$('#results').append('<td onclick="'+
+                     // +' alert('+d[0]+')'+
+                     // +'" >YonderList</td>');
+                      $.each(d, function(fldn, fldv){
+                        cnt=0;
+                        if(cnt==0){}
+                          $('#results').append('<td>'+fldv+'</td>');
+                        
+                        cnt+=1;
+                      });   
+                     
+                     $('#results').append('</tr>');  
+                     
+                  });
+                  
+                }
+                
+              },
+          minLength: 4,
+            });          
+        }
 
     </script>
 
